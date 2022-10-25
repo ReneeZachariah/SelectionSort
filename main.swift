@@ -1,34 +1,37 @@
 import Foundation
 var unsortedString = [""]
-var unsortedIntegers: [Int] = []
+var unsortedInts: [Int] = []
 while let input = readLine() {
     unsortedString.append(input)
 }
-var a = 0
-var b = 0
-var x:Float = 0
+var i = 0
+var y = 0
+var z:Float = 0
 for _ in unsortedString {
-    for  w in unsortedString[a].utf8 {
-        x += Float(w)/pow((1000.0), Float(b))
-        b += 1
+    for s in unsortedString[x].utf8 {
+        z += Float(s)/pow((1000.0), Float(y))
+        y += 1
     }
-    unsortedIntegers.append(Int(x))
-    b = 0
-    a += 1
-    x = 0
+    unsortedInts.append(Int(z))
+    y = 0
+    i += 1
+    z = 0
 }
-var array = unsortedIntegers
-for _ in 0...array.count {
-    for value in 1...array.count - 1 {
-        if array[value-1] > array[value] {
-            let largerInt = array[value-1]            
-            let largerString = unsortedString[value-1]
-            unsortedString[value-1] = unsortedString[value]
-            unsortedString[value] = largerString
 
-            array[value-1] = array[value]
-            array[value] = largerInt            
+var total = 0
+var x = 0
+var unsortedInt = unsortedInts
+for iteration in 0 ..< unsortedInt.count - 1 {
+
+    var min = iteration
+
+    for compare in iteration + 1 ..< unsortedInt.count {
+        if unsortedInt[compare] < unsortedInt[min] {
+            min = compare
         }
     }
+    unsortedString.swapAt(iteration, min)
+    unsortedInt.swapAt(iteration, min)
+    x = 1
+    total += 1
 }
-print(array, unsortedString)
